@@ -1,25 +1,36 @@
-from django.shortcuts import render,get_object_or_404
-from .models import myprojectblog
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
 from django.views.generic.list import ListView
+
+from .models import myprojectblog
+
+from .forms import postform
+class postcreateview(View):
+
+    template_name = "createpost.html"
+
+    def get(self,request,id=None,*args, **kwargs):
+        content = {}
+        form = postform()
+        content['form'] = form
+        return render(request,self.template_name,content)
+    
+    def post(self,request,id=None,*args, **kwargs):
+        content = {}
+        form = postform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("blogpost:list")
+        content['form'] = form
+        return render(request,self.template_name,content)
+
 
 class GreetingView(View):
     greeting = ""
 
     def get(self, request):
         return render(request, 'greet.html', {"greeting":self.greeting})
-
-# class blogpostListView(View):
-#     template_name="post_list.html"
-#     queryset = blogpost.objects.all()
-#     def get_queryset(self):
-#         return self.queryset
-#     def get(self,request,*args, **kwargs):
-#         content = {
-#             "obj_list":self.get_queryset()
-#         }
-#         return render(request,self.template_name,content)
 
 class getmyobjmixin(object):
     model = myprojectblog
@@ -42,3 +53,4 @@ class postlistView(View):
 
     def get(self,request):
         return render(request,"postlist.html",{"objects":myprojectblog.objects.all()})
+
