@@ -2,6 +2,8 @@ from django.shortcuts import render,get_object_or_404
 from .models import myprojectblog
 from django.views import View
 
+from django.views.generic.list import ListView
+
 class GreetingView(View):
     greeting = ""
 
@@ -36,3 +38,7 @@ class blogpostView(getmyobjmixin,View):
         }
         return render(request,self.template_name,content)
 
+class postlistView(View):
+
+    def get(self,request):
+        return render(request,"postlist.html",{"objects":myprojectblog.objects.all()})
