@@ -16,16 +16,18 @@
       href="{% static 'bootstrap/css/bootstrap.min.css' %}"
     />
     <title>
-      {% block title %}
-      {% endblock title %}
+      {% block title %} {% endblock title %}
     </title>
   </head>
   <body>
-      <div class="container">
-         {% block body %}
-         {% endblock body %}
-      </div>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}">
-    </script>
+    {% include 'nav.html' %} <br /><br />
+    <div class="container mx-auto jumbotron" style="margin-top: 50px;">
+      {% block body %} {% endblock body %}
+    </div>
+
+    <script src="{% static 'javascripts/jquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{% static 'javascripts/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    
   </body>
 </html>
