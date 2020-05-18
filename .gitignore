@@ -1,5 +1,9 @@
-blogpost/__pycache__/
 myblog/__pycache__/
-blogpost/migrations/__pycache__/
+
 blogpost/__pycache__/
+blogpost/migrations/__pycache__/
+
+authbasic/__pycache__/
+authbasic/migrations/__pycache__/
+
 .vscode/

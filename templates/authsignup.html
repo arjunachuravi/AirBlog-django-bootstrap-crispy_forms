@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Signup
+{% endblock title %}
+
+{% block body %}
+{% if registered %}
+  thanku for registering
+{% else %}
+<form method="post">
+<div class="form-group">
+  {% csrf_token %}
+  {{form.as_p}}
+</div>
+<input type="submit" value = "Signup" class="btn btn-primary mb-2">
+</form>
+{% endif %}
+{% endblock body %}

@@ -1,0 +1,11 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+{% if user.is_authenticated %}
+    hello {{user.username}}
+{% else %}
+    please login or register
+{% endif %}
+{% endblock body %}
