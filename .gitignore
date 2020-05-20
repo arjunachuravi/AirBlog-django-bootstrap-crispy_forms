@@ -1,7 +1,7 @@
 myblog/__pycache__/
 
-blogpost/__pycache__/
-blogpost/migrations/
+relations/__pycache__/
+relations/migrations/
 
 authbasic/__pycache__/
 authbasic/migrations/

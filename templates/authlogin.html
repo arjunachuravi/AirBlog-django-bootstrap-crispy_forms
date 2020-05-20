@@ -4,26 +4,28 @@ Log In
 {% endblock title %}
 
 {% block body %}
-<form action="{% url 'authbasic:signin' %}" method="post">
-  {% csrf_token %}
-  <div class = "form-group">
-  <input
-    type="text"
-    name="username"
-    placeholder="Username"
-    class="form-control"
-  />
-  </div>
-  <div class="form-group">
-  <input
-    type="password"
-    name="password"
-    placeholder="Password"
-    class="form-control"
-  />
-  </div>
-  <div style="text-align:center;">
-   <input type="submit" value="LOG IN " class="btn btn-primary mb-2" />
-  </div>
-</form>
+<div class="col-md-4 col-md-offset-4">
+  <form action="{% url 'authbasic:signin' %}" method="post" >
+    {% csrf_token %}
+    <div class = "form-group">
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      class="form-control"
+    />
+    </div>
+    <div class="form-group">
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      class="form-control"
+    />
+    </div>
+    <div style="text-align:center;">
+     <input type="submit" value="LOG IN " class="btn btn-primary mb-2" />
+    </div>
+  </form>
+</div>
 {% endblock body %}
