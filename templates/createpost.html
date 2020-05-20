@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
-create
+Create
 {% endblock title %}
 
 {% block body %}
-<form method="post">
-<div class="form-group">
-  {% csrf_token %}
-  {{form.as_p}}
-</div>
-<input type="submit" value = "post" class="btn btn-primary mb-2">
-</form>
+  {% crispy form %}
 {% endblock body %}

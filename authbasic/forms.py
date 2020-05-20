@@ -1,34 +1,46 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfileInfo
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
-class UserForm(forms.ModelForm):
+class UserForm(forms.Form,forms.ModelForm):
     username = forms.CharField(
-        required=True,
+        max_length=50, required=True,
         widget=forms.TextInput(
             attrs={
-                "class":"form-control"
-            }
-        )
-    )
-
+                'placeholder':'Username'
+            } ) )
     password = forms.CharField(
-        required=True,
+        required=True,max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                "class":"form-control"
-            }
-        )
-    )
-
+                'placeholder':'Tell the magic code'
+            }  ) )
     email = forms.CharField(
-        required=True,
-        widget=forms.EmailInput(
+        widget=forms.TextInput(
             attrs={
-                "class":"form-control"
-            }
+                'placeholder': 'Email'
+            } ) )
+
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('username',css_class="form-group col-6"),
+                css_class='form-row'
+            ),
+            Row(
+                Column('password',css_class="form-group col-6"),
+                css_class='form-row'
+            ),
+            Row(
+                Column('email',css_class="form-group col-6"),
+                css_class="form-row"
+            ),
+            Submit('submit', 'Sign in')
         )
-    )
     class Meta:
         model = User
         fields = [

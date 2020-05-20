@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 Signup
@@ -6,14 +7,8 @@ Signup
 
 {% block body %}
 {% if registered %}
-  thanku for registering
+  Thank You for the Patience , Please login to continue . . .
 {% else %}
-<form method="post">
-<div class="form-group">
-  {% csrf_token %}
-  {{form.as_p}}
-</div>
-<input type="submit" value = "Signup" class="btn btn-primary mb-2">
-</form>
+  {% crispy form %}
 {% endif %}
 {% endblock body %}

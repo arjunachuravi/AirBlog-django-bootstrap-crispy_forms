@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% block title %} Login {% endblock title %} 
+{% extends 'base.html' %}
+{% block title %}
+Log In
+{% endblock title %}
+
 {% block body %}
 <form action="{% url 'authbasic:signin' %}" method="post">
   {% csrf_token %}
@@ -18,7 +22,8 @@
     class="form-control"
   />
   </div>
-  <br> <br>
-  <input type="submit" value="LOG IN " class="btn btn-primary mb-2" />
+  <div style="text-align:center;">
+   <input type="submit" value="LOG IN " class="btn btn-primary mb-2" />
+  </div>
 </form>
 {% endblock body %}

@@ -25,9 +25,10 @@ class UserRegistration(View):
             return redirect("authbasic:index")
         else:
             if form.is_valid():
-                user = form.save()
-                user.set_password(user.password)
-                user.save()
+                profile = form.save(commit=False)
+                profile.user = request.user
+                profile.set_password(profile.password)
+                profile.save()
                 registered = True
             else:
                 # print errors // this is debug area

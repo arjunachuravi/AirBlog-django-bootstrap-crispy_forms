@@ -25,7 +25,7 @@ SECRET_KEY = '%_8#@m*iyrn&ij7tri$lryth-4go3odfe-8%2*!$cc6!b=_kl='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blogpost',
-    'authbasic'
+    'crispy_forms',
+    'authbasic',
+    'relations'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static-serve")
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,11 +1,13 @@
-
-
 {% extends 'base.html' %}
+
+{% block title %}
+ Home
+{% endblock title %}
 
 {% block body %}
 {% if user.is_authenticated %}
-    hello {{user.username}}
+    hello {{user.username}} , Welcome to AirBlog
 {% else %}
-    please login or register
+    Welcome to AirBLog . Please login or register
 {% endif %}
 {% endblock body %}

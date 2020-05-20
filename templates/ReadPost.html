@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block body %}
+    {% for obj in objects %}
+            <h4>
+              {{obj.title}}
+            </h4>
+            <p class="lead">
+              {{obj.desc}}
+            </p>
+            <p>
+              {{obj.author.username}} | {{obj.tech}} | {{obj.time}}
+            </p>
+            <hr class="my-3" />
+    {% endfor %}
+{% endblock body %}
