@@ -28,18 +28,18 @@ class UserForm(forms.Form,forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
             Row(
-                Column('username',css_class="form-group col-6"),
+                Column('username',css_class="form-group col-8"),
                 css_class='form-row'
             ),
             Row(
-                Column('password',css_class="form-group col-6"),
+                Column('password',css_class="form-group col-8"),
                 css_class='form-row'
             ),
             Row(
-                Column('email',css_class="form-group col-6"),
+                Column('email',css_class="form-group col-8"),
                 css_class="form-row"
             ),
-            Submit('submit', 'Sign in')
+            Submit('submit', 'Sign Up')
         )
     class Meta:
         model = User

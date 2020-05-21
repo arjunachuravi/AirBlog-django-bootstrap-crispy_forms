@@ -1,20 +1,48 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Posts
-{% endblock title %}
-
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Posts {% endblock title %} 
 {% block body %}
+<div class="container">
+  <div class="row">
     {% for obj in objects %}
-            <h4>
-              {{obj.title}}
-            </h4>
-            <p class="lead">
-              {{obj.desc}}
-            </p>
-            <p>
-              {{obj.author.username}} | {{obj.tech}} | {{obj.time}}
-            </p>
-            <hr class="my-3" />
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100">
+        <a href="../{{obj.id}}/detail"
+          ><img class="card-img-top" src="{% static 'pictures/pic.jpg' %}" alt=""
+        /></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            {{obj.title}}
+          </h4>
+          <p class="card-text">
+            @{{obj.author.username}} &nbsp;
+            {% if request.user == obj.author %}
+            <a href="../{{obj.id}}/update">Edit</a> |
+            <a href="../{{obj.id}}/delete">Delete</a>
+            {% endif %} 
+          </p>
+          <p class="card-text">
+            {{obj.desc |truncatechars:40 }} &nbsp;
+            <a href="../{{obj.id}}/detail">Read more</a>
+          </p>
+        </div>
+      </div>
+    </div>
     {% endfor %}
+  </div>
+</div>
 {% endblock body %}
+<h4>
+  {{obj.title}}
+</h4>
+<p class="lead">
+  {{obj.desc |truncatechars:25 }} &nbsp;
+  <a href="../{{obj.id}}/detail">Read more</a>
+</p>
+<p>
+  {% if request.user == obj.author %}
+  <a href="../{{obj.id}}/update">Edit</a> |
+  <a href="../{{obj.id}}/delete">Delete</a>
+  {% else %} {{obj.author.username}} {% endif %} | {{obj.tech}} | {{obj.time}}
+</p>
+<hr class="my-3" />

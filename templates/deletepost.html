@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<form method="post">
+<h4>
+    {{obj.title}}
+</h4>
+<p class="lead">
+    {{obj.desc}}
+</p>
+<p>
+    {{obj.author.username}} | {{obj.tech}} | {{obj.time}}
+</p>
+<hr class="my-3" />
+
+    {% csrf_token %}
+    <strong>
+        Do you want to Delete the Post?
+    </strong>
+    <br><br>
+    <input type="submit" value="Confirm Delete" class="btn btn-primary mb-2">
+     <br><br>
+    <p><a href={% url 'relations:read' %}>cancel</a></p>
+</form>
+{% endblock %}

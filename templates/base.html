@@ -15,6 +15,37 @@
       rel="stylesheet"
       href="{% static 'bootstrap/css/bootstrap.min.css' %}"
     />
+    {% block add_css %}
+    {% endblock add_css %}
+    <style>
+      a {
+        text-decoration: none !important;
+      }
+      a:link {
+        color: red;
+      }
+      a:visited {
+        color: green;
+      }
+      a:hover {
+        color: hotpink;
+      }
+      a:active {
+        color: blue;
+      }
+      html,
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      footer {
+        margin-top: auto;
+      }
+    </style>
     <title>
       AirBLog | {% block title %} {% endblock title %}
     </title>
@@ -22,16 +53,25 @@
   <body>
     {% include 'nav.html' %} <br />
     <div class="container">
-      <div class="row justify-content-center">
+      {% include 'message.html' %}
+      <div class="row">
         <div class="col">
-          {% block body %}
-          {% endblock body %}
+          {% block body %} {% endblock body %}
         </div>
       </div>
     </div>
+    <br>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; AirBlog 2020
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
     <script src="{% static 'javascripts/jquery-3.5.1.slim.min.js' %}"></script>
     <script src="{% static 'javascripts/popper.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    
   </body>
 </html>
