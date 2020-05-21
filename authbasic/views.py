@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 class UserRegistration(View):
-    template_name ="authsignup.html"
+    template_name ="authbasic/authsignup.html"
     def get(self,request,*args, **kwargs):
         content = {}
         form = UserForm
@@ -38,7 +38,7 @@ class UserRegistration(View):
         return render(request,self.template_name,content)
 
 class UserSignin(View):
-    template_name = "authlogin.html"
+    template_name = "authbasic/authlogin.html"
     def get(self,request,*args, **kwargs):
         content = {}
         if request.user.is_authenticated:
@@ -72,4 +72,4 @@ def user_logout(request):
 
 def index(request):
     # print(request.user.is_authenticated) #debug
-    return render(request,'authbasic.html')
+    return render(request,'authbasic/authbasic.html')

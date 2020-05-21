@@ -16,7 +16,7 @@ class PostObjectMixin(object):
         return obj
 
 class CreateThePost(LoginRequiredMixin,View):
-    template_name="createpost.html"
+    template_name="relations/createpost.html"
     login_url = "authbasic:signin"
     def get(self,request,*args, **kwargs):
         content = {}
@@ -37,7 +37,7 @@ class CreateThePost(LoginRequiredMixin,View):
         return render(request,self.template_name,content)
 
 class ReadThePost(LoginRequiredMixin,View):
-    template_name="ReadPost.html"
+    template_name="relations/ReadPost.html"
     login_url = "authbasic:signin"
     def get(self,request,*args, **kwargs):
         content = {
@@ -46,7 +46,7 @@ class ReadThePost(LoginRequiredMixin,View):
         return render(request,self.template_name,content)
 
 class UpdateThePost(PostObjectMixin,LoginRequiredMixin,View):
-    template_name = "updatepost.html"
+    template_name = "relations/updatepost.html"
     login_url = 'authbasic:signin'
     def get(self,request,id=None,*args, **kwargs):
         content = {}
@@ -73,7 +73,7 @@ class UpdateThePost(PostObjectMixin,LoginRequiredMixin,View):
         return render(request,self.template_name,content)
 
 class DeleteThePost(PostObjectMixin,LoginRequiredMixin,View):
-    template_name = "deletepost.html"
+    template_name = "relations/deletepost.html"
     def get(self,request,id=None,*args, **kwargs):
         content = {}
         obj = self.get_object()
@@ -84,18 +84,18 @@ class DeleteThePost(PostObjectMixin,LoginRequiredMixin,View):
     def post(self,request,id=None,*args, **kwargs):
         content = {}
         obj = self.get_object()
-        if obj.user == request.user:
+        if obj.author == request.user:
             if obj is not None:
                 obj.delete()
                 content['obj'] = None
                 messages.info(request,"The post was Deleted")
-                return redirect('relaions:read') 
+                return redirect('relations:read') 
         else:
             messages.info(request, 'You cannot delete others tweet')
         return render(request,self.template_name,content)
 
 class RetriveThePost(PostObjectMixin,LoginRequiredMixin,View):
-    template_name="retrivepost.html"
+    template_name="relations/retrivepost.html"
     login_url = "authbasic:signin"
     def get(self,request,id=None,*args, **kwargs):
         content = {}

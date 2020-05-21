@@ -51,14 +51,10 @@
     </title>
   </head>
   <body>
-    {% include 'nav.html' %} <br />
+    {% include 'myblog/nav.html' %} <br />
     <div class="container">
-      {% include 'message.html' %}
-      <div class="row">
-        <div class="col">
-          {% block body %} {% endblock body %}
-        </div>
-      </div>
+      {% include 'myblog/message.html' %}
+      {% block body %} {% endblock body %}
     </div>
     <br>
     <!-- Footer -->
